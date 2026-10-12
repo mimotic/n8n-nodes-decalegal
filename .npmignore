@@ -1,0 +1,7 @@
+credentials
+nodes
+scripts
+.github
+tsconfig.json
+eslint.config.mjs
+*.tsbuildinfo
