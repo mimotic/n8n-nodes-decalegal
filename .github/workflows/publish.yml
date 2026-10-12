@@ -1,7 +1,8 @@
 name: Publish to npm
 
 # n8n only verifies community nodes published from GitHub Actions with a
-# provenance statement. Tag a release (v0.1.0) to publish.
+# provenance statement. The package uses npm trusted publishing (OIDC), so no
+# token is needed: tag a release (v0.1.1) to publish.
 on:
   push:
     tags:
@@ -20,9 +21,8 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run build
       - run: npm run lint
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
